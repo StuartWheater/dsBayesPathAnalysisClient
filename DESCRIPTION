@@ -1,0 +1,15 @@
+Package: dsBayesPathAnalysisClient
+Title: DataSHIELD Bayes Path Analysis client-side R functions
+Description: DataSHIELD Bayes Path Analysis client-side R functions.
+Version: 0.1.0
+Author: DataSHIELD Developers <datashield@newcastle.ac.uk>
+Maintainer: DataSHIELD Developers <datashield@newcastle.ac.uk>
+License: GPL-3
+Depends: 
+    R (>= 3.5.0),
+    DSI (>= 1.3.0)    
+AggregateMethods:
+    ds.hessSEM
+AssignMethods:
+    ds.hessSEM.assign
+RoxygenNote: 7.1.1
