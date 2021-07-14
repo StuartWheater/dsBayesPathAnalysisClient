@@ -10,4 +10,16 @@
 
 context("setup - start")
 
+library("httr")
+library("DSOpal")
+library("DSI")
+library("dsBaseClient")
+
+source("dstest_functions/ds_expect_variables.R")
+
+source("connection_to_datasets/connection_utils.R")
+source("connection_to_datasets/connect_sem_datasets.R")
+
+ds.test.env <- connection.init()
+
 context("setup - done")

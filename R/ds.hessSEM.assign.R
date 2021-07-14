@@ -25,7 +25,7 @@ ds.hessSEM.assign <- function(x=NULL, newobj=NULL, datasources=NULL){
 
     # create a name by default if user did not provide a name for the new variable
     if(is.null(newobj)){
-        newobj <- "hassSEM.newobj"
+        newobj <- "hessSEM.newobj"
     }
 
     x.transfer <- x

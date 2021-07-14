@@ -9,7 +9,7 @@
 # Set up
 #
 
-context("ds.hessSEM::smk::setup")
+context("ds.hessSEM.assign::smk::setup")
 
 connect.sem.dataset.sem(ds.test.env, list("v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17", "v18", "v19", "v20", "v21", "v22", "v23", "v24", "v25", "v26", "v27", "v28"))
 
@@ -21,23 +21,23 @@ test_that("setup", {
 # Tests
 #
 
-context("ds.hessSEM::smk")
-test_that("simple hessSEM", {
-    res <- ds.hessSEM("D")
+context("ds.hessSEM.assign::smk")
+test_that("simple hessSEM.assign", {
+    res <- ds.hessSEM.assign("D")
 
-    expect_length(res, 1)
+    expect_length(res, 0)
 })
 
 #
 # Done
 #
 
-context("ds.hessSEM::smk::shutdown")
+context("ds.hessSEM.assign::smk::shutdown")
 
 test_that("shutdown", {
-    ds_expect_variables(c("D"))
+    ds_expect_variables(c("D", "hessSEM.newobj"))
 })
 
 disconnect.sem.dataset.sem(ds.test.env)
 
-context("ds.hessSEM::smk::done")
+context("ds.hessSEM.assign::smk::done")

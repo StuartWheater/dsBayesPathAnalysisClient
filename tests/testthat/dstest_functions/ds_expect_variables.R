@@ -9,38 +9,14 @@
 #-------------------------------------------------------------------------------
 
 #
-# Set up
-#
-
-context("ds.hessSEM_assign::smk::setup")
-
-connect.studies.dataset.cnsim(list("LAB_TSC"))
-
-test_that("setup", {
-    ds_expect_variables(c("D"))
-})
-
-#
 # Tests
 #
 
-context("ds.hessSEM_assign::smk")
-test_that("simple c", {
-    res <- ds.hessSEM_assign("D$LAB_TSC")
+ds_expect_variables <- function(expected.variables)
+{
+    studies.current.varables <- ds.ls()
 
-    expect_length(res, 0)
-})
-
-#
-# Done
-#
-
-context("ds.hessSEM_assign::smk::shutdown")
-
-test_that("setup", {
-    ds_expect_variables(c("D", "c.newobj"))
-})
-
-disconnect.studies.dataset.cnsim()
-
-context("ds.hessSEM_assign::smk::done")
+    for (study.current.varables in studies.current.varables) {
+        expect_setequal(study.current.varables$objects.found, expected.variables)
+    }
+}
