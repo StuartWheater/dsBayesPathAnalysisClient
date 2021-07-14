@@ -13,7 +13,7 @@
 #' @author DataSHIELD Development Team
 #' @import DSI
 #' @export
-ds.hessSEM_assign <- function(x=NULL, newobj=NULL, datasources=NULL){
+ds.hessSEM.assign <- function(x=NULL, newobj=NULL, datasources=NULL){
     # look for DS connections
     if(is.null(datasources)){
         datasources <- DSI::datashield.connections_find()
