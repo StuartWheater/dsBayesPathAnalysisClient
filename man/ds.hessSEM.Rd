@@ -4,18 +4,28 @@
 \alias{ds.hessSEM}
 \title{Combines values into a vector or list in the server-side}
 \usage{
-ds.hessSEM(x, chains, method, seed, iter, datasources = NULL)
+ds.hessSEM(
+  resourcename,
+  infile,
+  nIter,
+  nChains,
+  seed,
+  method,
+  datasources = NULL
+)
 }
 \arguments{
-\item{x}{a vector of character string providing the names of the objects to be combined.}
+\item{resourcename}{a vector of character string providing the names of the objects to be combined.}
 
-\item{chains}{is the ...}
+\item{infile}{is the ...}
 
-\item{method}{is the ...}
+\item{nIter}{is the ...}
+
+\item{nChains}{is the ...}
 
 \item{seed}{is the ...}
 
-\item{iter}{is the ...}
+\item{method}{is the ...}
 
 \item{datasources}{a list of \code{\link{DSConnection-class}} 
 objects obtained after login. If the \code{datasources} argument is not specified

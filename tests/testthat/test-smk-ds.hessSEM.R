@@ -23,7 +23,7 @@ test_that("setup", {
 
 context("ds.hessSEM::smk")
 test_that("simple hessSEM", {
-    res <- ds.hessSEM("D", 1, 1, 0, 200)
+    res <- ds.hessSEM("R", "na_sem_data.txt", 200, 1, 0, 1)
 
     expect_length(res, 1)
 })
