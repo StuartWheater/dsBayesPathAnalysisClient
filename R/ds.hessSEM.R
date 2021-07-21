@@ -34,6 +34,6 @@ ds.hessSEM <- function(resourcename, infile, nIter, nChains, seed, method, datas
     method.transfer       <- method
 
     # call the server side function that does the job
-    calltext <- call("hessSEMDS", resourcename.transfer, infile.transfer, nIter.transfer, nChains.transfer, seed.transfer, method.transfer)
+    calltext <- call("hessSEMDS", as.symbol(resourcename.transfer), infile.transfer, nIter.transfer, nChains.transfer, seed.transfer, method.transfer)
     DSI::datashield.aggregate(datasources, calltext)
 }

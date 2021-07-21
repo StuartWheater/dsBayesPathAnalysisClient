@@ -11,21 +11,52 @@
 
 context("ds.hessSEM::smk::setup")
 
-connect.sem.dataset.sem(ds.test.env, list("v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11", "v12", "v13", "v14", "v15", "v16", "v17", "v18", "v19", "v20", "v21", "v22", "v23", "v24", "v25", "v26", "v27", "v28"))
-
-test_that("setup", {
-    ds_expect_variables(c("D"))
-})
+connect.sem.resource.sem(ds.test.env)
 
 #
 # Tests
 #
 
-context("ds.hessSEM::smk")
-test_that("simple hessSEM", {
-    res <- ds.hessSEM("R", "na_sem_data.txt", 200, 1, 0, 1)
+context("ds.hessSEM::smk::no na")
+test_that("no na hessSEM", {
+    res <- ds.hessSEM("D", "sem_data.txt", 200, 1, 0, 1)
 
     expect_length(res, 1)
+    expect_length(res$sem1, 11)
+
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_beta_1_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_beta_1)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_beta_2_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_beta_2)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_gamma_1_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_gamma_1)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_gamma_2_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_gamma_2)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_logP)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_R2_full_data_1_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$sem_data_HESS_R2_full_data_2_MCMC)))
+})
+
+context("ds.hessSEM::smk::na")
+test_that("na hessSEM", {
+    res <- ds.hessSEM("D", "na_sem_data.txt", 200, 1, 0, 1)
+
+    expect_length(res, 1)
+    expect_length(res$sem1, 13)
+
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_beta_1_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_beta_1)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_beta_2_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_beta_2)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_gamma_1_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_gamma_1)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_gamma_2_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_gamma_2)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_logP)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_R2_complete_cases_1_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_R2_complete_cases_2_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_R2_full_data_1_MCMC)))
+    expect_true(all(c("spec_tbl_df", "tbl_df", "tbl", "data.frame") %in% class(res$sem1$na_sem_data_HESS_R2_full_data_2_MCMC)))
 })
 
 #
@@ -34,10 +65,6 @@ test_that("simple hessSEM", {
 
 context("ds.hessSEM::smk::shutdown")
 
-test_that("shutdown", {
-    ds_expect_variables(c("D"))
-})
-
-disconnect.sem.dataset.sem(ds.test.env)
+disconnect.sem.resource.sem(ds.test.env)
 
 context("ds.hessSEM::smk::done")

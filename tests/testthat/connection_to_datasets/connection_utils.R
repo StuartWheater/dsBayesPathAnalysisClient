@@ -60,7 +60,11 @@ connection.init <- function()
 
 login.server <- function(ds.test.env)
 {
-    ds.test.env$connections <- datashield.login(logins=ds.test.env$login.data, assign=TRUE, variables=ds.test.env$stats.var)
+    if (length(ds.test.env$stats.var) == 0) {
+        ds.test.env$connections <- datashield.login(logins = ds.test.env$login.data, assign = TRUE, symbol = "D")
+    } else {
+        ds.test.env$connections <- datashield.login(logins = ds.test.env$login.data, assign = TRUE, variables = ds.test.env$stats.var, symbol = "D")
+    }
 }
 
 logout.server <- function(ds.test.env)

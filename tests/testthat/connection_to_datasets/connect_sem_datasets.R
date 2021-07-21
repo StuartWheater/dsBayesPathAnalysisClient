@@ -66,3 +66,34 @@ disconnect.sem.dataset.semna <- function(ds.test.env)
 {
     logout.server(ds.test.env)
 }
+
+# SEM and NA_SEM resource
+
+connect.sem.resource.sem <- function(ds.test.env)
+{
+    if (is.null(ds.test.env))
+    {
+        stop("No test specification environment.")
+    }
+
+    logout.server(ds.test.env)
+
+    if (ds.test.env$driver == "OpalDriver")
+    {
+        builder <- DSI::newDSLoginBuilder(.silent = TRUE)
+        builder$append(server = "sem1", url = ds.test.env$url_1, user = ds.test.env$user_1, password = ds.test.env$password_1, resource = "SEM.sem_data", options=ds.test.env$options_1)
+        ds.test.env$login.data <- builder$build()
+    }
+    else
+    {
+        stop(paste0("Unknown Driver: ", ds.test.env$driver))
+    }
+    ds.test.env$stats.var <- list()
+
+    login.server(ds.test.env)
+}
+
+disconnect.sem.resource.sem <- function(ds.test.env)
+{
+    logout.server(ds.test.env)
+}
