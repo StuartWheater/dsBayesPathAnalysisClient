@@ -5,7 +5,10 @@
 #' 
 #' @param resourcename a vector of character string providing the names of the objects to be combined.
 #' @param infile is the ...
+#' @param autoAddIntercept is the ...
+#' @param gammaInit is the ...
 #' @param nIter is the ...
+#' @param burnin is the ...
 #' @param nChains is the ...
 #' @param seed is the ...
 #' @param method is the ...
@@ -16,7 +19,7 @@
 #' @author DataSHIELD Development Team
 #' @import DSI
 #' @export
-ds.hessSEM <- function(resourcename, infile, nIter, nChains, seed, method, datasources=NULL){
+ds.hessSEM <- function(resourcename, infile, autoAddIntercept, gammaInit, nIter, burnin, nChains, seed, method, datasources=NULL){
     # look for DS connections
     if(is.null(datasources)){
         datasources <- DSI::datashield.connections_find()
@@ -26,14 +29,17 @@ ds.hessSEM <- function(resourcename, infile, nIter, nChains, seed, method, datas
         stop("Please provide the names of the resources to concatenate!", call.=FALSE)
     }
 
-    resourcename.transfer <- resourcename
-    infile.transfer       <- infile
-    nIter.transfer        <- nIter
-    nChains.transfer      <- nChains
-    seed.transfer         <- seed
-    method.transfer       <- method
+    resourcename.transfer     <- resourcename
+    infile.transfer           <- infile
+    autoAddIntercept.transfer <- autoAddIntercept
+    gammaInit.transfer        <- gammaInit
+    nIter.transfer            <- nIter
+    burnin.transfer           <- burnin
+    nChains.transfer          <- nChains
+    seed.transfer             <- seed
+    method.transfer           <- method
 
     # call the server side function that does the job
-    calltext <- call("hessSEMDS", as.symbol(resourcename.transfer), infile.transfer, nIter.transfer, nChains.transfer, seed.transfer, method.transfer)
+    calltext <- call("hessSEMDS", as.symbol(resourcename.transfer), infile.transfer, autoAddIntercept.transfer, gammaInit.transfer, nIter.transfer, burnin.transfer, nChains.transfer, seed.transfer, method.transfer)
     DSI::datashield.aggregate(datasources, calltext)
 }

@@ -19,7 +19,7 @@ connect.sem.resource.sem(ds.test.env)
 
 context("ds.hessSEM::smk::no na")
 test_that("no na hessSEM", {
-    res <- ds.hessSEM("D", "sem_data.txt", 200, 1, 0, 1)
+    res <- ds.hessSEM("D", "sem_data.txt", TRUE, "S", 200, 0, 1, 0, 1)
 
     expect_length(res, 1)
     expect_length(res$sem1, 11)
@@ -39,7 +39,7 @@ test_that("no na hessSEM", {
 
 context("ds.hessSEM::smk::na")
 test_that("na hessSEM", {
-    res <- ds.hessSEM("D", "na_sem_data.txt", 200, 1, 0, 1)
+    res <- ds.hessSEM("D", "na_sem_data.txt", TRUE, "S", 200, 0, 1, 0, 1)
 
     expect_length(res, 1)
     expect_length(res$sem1, 13)

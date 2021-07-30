@@ -7,7 +7,10 @@
 ds.hessSEM(
   resourcename,
   infile,
+  autoAddIntercept,
+  gammaInit,
   nIter,
+  burnin,
   nChains,
   seed,
   method,
@@ -19,7 +22,13 @@ ds.hessSEM(
 
 \item{infile}{is the ...}
 
+\item{autoAddIntercept}{is the ...}
+
+\item{gammaInit}{is the ...}
+
 \item{nIter}{is the ...}
+
+\item{burnin}{is the ...}
 
 \item{nChains}{is the ...}
 
