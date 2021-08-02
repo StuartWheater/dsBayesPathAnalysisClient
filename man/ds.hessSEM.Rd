@@ -5,8 +5,11 @@
 \title{Combines values into a vector or list in the server-side}
 \usage{
 ds.hessSEM(
-  resourcename,
-  infile,
+  resource.name,
+  inFile,
+  blockList.name,
+  varType.name,
+  SEMGraph.name,
   autoAddIntercept,
   gammaInit,
   nIter,
@@ -18,9 +21,15 @@ ds.hessSEM(
 )
 }
 \arguments{
-\item{resourcename}{a vector of character string providing the names of the objects to be combined.}
+\item{resource.name}{a vector of character string providing the names of the objects to be combined.}
 
-\item{infile}{is the ...}
+\item{inFile}{is the ...}
+
+\item{blockList.name}{is the name of ...}
+
+\item{varType.name}{is the name of...}
+
+\item{SEMGraph.name}{is the name of ...}
 
 \item{autoAddIntercept}{is the ...}
 
@@ -41,7 +50,21 @@ objects obtained after login. If the \code{datasources} argument is not specifie
 the default set of connections will be used: see \code{\link{datashield.connections_default}}.}
 }
 \value{
-\code{ds.c} returns the vector of concatenating R
+a list from each server/study containing the results of that server/study. Each results in the
+list is named with the name allocated to the server/study during the login process. The results from
+each server/study is a list containing the following named items:
+HESS_beta_1: 
+HESS_beta_2_MCMC: 
+HESS_beta_2: 
+HESS_gamma_1_MCMC: 
+HESS_gamma_1: 
+HESS_gamma_2_MCMC: 
+HESS_gamma_2: 
+HESS_logP: 
+HESS_R2_complete_cases_1_MCMC: (if input contains NAs) 
+HESS_R2_complete_cases_2_MCMC: (if input contains NAs) 
+HESS_R2_full_data_1_MCMC: 
+HESS_R2_full_data_2_MCMC:
 }
 \description{
 Concatenates objects into one vector.
