@@ -3,18 +3,30 @@
 #' @description Concatenates objects into one vector.
 #' @details To avoid combining the character names and not the 
 #' 
-#' @param resource.name a vector of character string providing the names of the objects to be combined.
-#' @param inFile is the ...
-#' @param blockList.name is the name of ...
-#' @param varType.name is the name of...
-#' @param SEMGraph.name is the name of ...
-#' @param autoAddIntercept is the ...
-#' @param gammaInit is the ...
-#' @param nIter is the ...
-#' @param burnin is the ...
-#' @param nChains is the ...
-#' @param seed is the ...
-#' @param method is the ...
+#' @param resource.name is the name of the shell resource on the server which will be used to
+#' obtains the variables on the columns and observations on the rows.
+#' @param inFile is the name of the file, obtained via the shell resource on the server, which
+#' contains the variables on the columns and observations on the rows.
+#' @param blockList.name is the name of the variable on the server which contains the list of
+#' blocks in the model; each element of the list contains the (column) indices of the variables
+#' in each block, with respect to the data file
+#' @param varType.name is the name of the variable on the server which contains variable type
+#' for each column in the data file; coded as: 0 - continuous, 1- binary, 2 - categorical. Note
+#' that categorical variables cannot be imputed
+#' @param SEMGraph.name is the name of the variable on the server which contains graph adjacency
+#' matrix representing the SEM structure between the blocks. Edges represented as 2 indicate
+#' variables that will be always included in the regression model
+#' @param autoAddIntercept is the should the c++ code automatically add an intercept to every
+#' equation? Value should be TRUE or FALSE
+#' @param gammaInit is the gamma initialisation to either all-zeros ("0"), all ones ("1"),
+#' randomly ("R") or (default) MLE-informed ("MLE")
+#' @param nIter is the number of iterations for the MCMC procedure
+#' @param burnin is the number of iterations (or fraction of iterations) to discard at the
+#' start of the chain
+#' @param nChains is the number of parallel chains to run
+#' @param seed is the pRNG seed
+#' @param method is the gamma sampling method, where 0=MC^3 and 1=Thompson-sampling inspired
+#' novel method
 #' @param datasources a list of \code{\link{DSConnection-class}} 
 #' objects obtained after login. If the \code{datasources} argument is not specified
 #' the default set of connections will be used: see \code{\link{datashield.connections_default}}.
