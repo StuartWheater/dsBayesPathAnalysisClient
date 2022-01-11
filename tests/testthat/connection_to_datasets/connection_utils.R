@@ -36,13 +36,13 @@ connection.init <- function()
     ds.test_env$server_ip_address <- ip.address
   
     # opal_url <- paste("http://", ds.test_env$server_ip_address, ":8080", sep="")
-    # opal_url <- paste("https://", ds.test_env$server_ip_address, ":8443", sep="")
-    opal_url <- paste("http://", ds.test_env$server_ip_address, ":8080", sep="")
+    opal_url <- paste("https://", ds.test_env$server_ip_address, ":8443", sep="")
+    # opal_url <- paste("http://", ds.test_env$server_ip_address, ":8080", sep="")
 
     #This TCP/IP address is required to test a connect to the server. 
     ds.test_env$ping_address <- opal_url
-    ds.test_env$ping_config  <- config(timeout=5)
-    # ds.test_env$ping_config  <- config(timeout=5, ssl_verifyhost=0, ssl_verifypeer=0)
+    # ds.test_env$ping_config  <- config(timeout=5)
+    ds.test_env$ping_config  <- config(timeout=5, ssl_verifyhost=0, ssl_verifypeer=0)
 
     ds.test_env$url_1 <- opal_url
 

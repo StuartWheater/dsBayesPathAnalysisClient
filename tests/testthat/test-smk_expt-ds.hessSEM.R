@@ -29,7 +29,7 @@ test_that("no na hessSEM 1", {
     ds.assign(toAssign="NULL", newobj = "varType")
 
     # matrix(c(0, 1, 1, 0, 0, 1, 0, 0, 0), byrow = TRUE, ncol = 3, nrow = 3)
-    ds.matrix(mdata = c(0,1,1,0,0,1,0,0,0), nrows.scalar = 3, ncols.scalar = 3, newobj = "SEMGraph")
+    ds.matrix(mdata = c(0,1,1,0,0,1,0,0,0), byrow = TRUE, nrows.scalar = 3, ncols.scalar = 3, newobj = "SEMGraph")
 
     res <- ds.hessSEM("D", "sem_data.txt", "blockList", "varType", "SEMGraph", TRUE, "S", 200, 0, 1, 0, 1)
 
@@ -48,7 +48,7 @@ test_that("no na hessSEM 2", {
     ds.assign(toAssign="NULL", newobj = "varType")
 
     # matrix(c(0, 1, 1, 0, 0, 1, 0, 0, 0), byrow = TRUE, ncol = 3, nrow = 3)
-    ds.matrix(mdata = c(0,1,1,0,0,1,0,0,0), nrows.scalar = 3, ncols.scalar = 3, newobj = "SEMGraph")
+    ds.matrix(mdata = c(0,1,1,0,0,1,0,0,0), byrow = TRUE, nrows.scalar = 3, ncols.scalar = 3, newobj = "SEMGraph")
 
     res <- ds.hessSEM("D", "sem_data.txt", "blockList", "varType", "SEMGraph", TRUE, "S", 2000, 0, 1, 0, 1)
 
@@ -67,7 +67,7 @@ test_that("na hessSEM 1", {
     ds.assign(toAssign="NULL", newobj = "varType")
 
     # matrix(c(0, 1, 1, 0, 0, 1, 0, 0, 0), byrow = TRUE, ncol = 3, nrow = 3)
-    ds.matrix(mdata = c(0,1,1,0,0,1,0,0,0), nrows.scalar = 3, ncols.scalar = 3, newobj = "SEMGraph")
+    ds.matrix(mdata = c(0,1,1,0,0,1,0,0,0), byrow = TRUE, nrows.scalar = 3, ncols.scalar = 3, newobj = "SEMGraph")
 
     res <- ds.hessSEM("D", "na_sem_data.txt", "blockList", "varType", "SEMGraph", TRUE, "S", 200, 0, 1, 0, 1)
 
@@ -86,7 +86,7 @@ test_that("na hessSEM 2", {
     ds.assign(toAssign="NULL", newobj = "varType")
 
     # matrix(c(0, 1, 1, 0, 0, 1, 0, 0, 0), byrow = TRUE, ncol = 3, nrow = 3)
-    ds.matrix(mdata = c(0,1,1,0,0,1,0,0,0), nrows.scalar = 3, ncols.scalar = 3, newobj = "SEMGraph")
+    ds.matrix(mdata = c(0,1,1,0,0,1,0,0,0), byrow = TRUE, nrows.scalar = 3, ncols.scalar = 3, newobj = "SEMGraph")
 
     res <- ds.hessSEM("D", "na_sem_data.txt", "blockList", "varType", "SEMGraph", TRUE, "S", 2000, 0, 1, 0, 1)
 

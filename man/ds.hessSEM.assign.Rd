@@ -4,10 +4,59 @@
 \alias{ds.hessSEM.assign}
 \title{Combines values into a vector or list in the server-side}
 \usage{
-ds.hessSEM.assign(x = NULL, newobj = NULL, datasources = NULL)
+ds.hessSEM.assign(
+  resource.name,
+  inFile,
+  blockList.name,
+  varType.name,
+  SEMGraph.name,
+  autoAddIntercept,
+  gammaInit,
+  nIter,
+  burnin,
+  nChains,
+  seed,
+  method,
+  newobj = NULL,
+  datasources = NULL
+)
 }
 \arguments{
-\item{x}{a vector of character string providing the names of the objects to be combined.}
+\item{resource.name}{is the name of the shell resource on the server which will be used to
+obtains the variables on the columns and observations on the rows.}
+
+\item{inFile}{is the name of the file, obtained via the shell resource on the server, which
+contains the variables on the columns and observations on the rows.}
+
+\item{blockList.name}{is the name of the variable on the server which contains the list of
+blocks in the model; each element of the list contains the (column) indices of the variables
+in each block, with respect to the data file}
+
+\item{varType.name}{is the name of the variable on the server which contains variable type
+for each column in the data file; coded as: 0 - continuous, 1- binary, 2 - categorical. Note
+that categorical variables cannot be imputed}
+
+\item{SEMGraph.name}{is the name of the variable on the server which contains graph adjacency
+matrix representing the SEM structure between the blocks. Edges represented as 2 indicate
+variables that will be always included in the regression model}
+
+\item{autoAddIntercept}{is the should the c++ code automatically add an intercept to every
+equation? Value should be TRUE or FALSE}
+
+\item{gammaInit}{is the gamma initialisation to either all-zeros ("0"), all ones ("1"),
+randomly ("R") or (default) MLE-informed ("MLE")}
+
+\item{nIter}{is the number of iterations for the MCMC procedure}
+
+\item{burnin}{is the number of iterations (or fraction of iterations) to discard at the
+start of the chain}
+
+\item{nChains}{is the number of parallel chains to run}
+
+\item{seed}{is the pRNG seed}
+
+\item{method}{is the gamma sampling method, where 0=MC^3 and 1=Thompson-sampling inspired
+novel method}
 
 \item{newobj}{a character string that provides the name for the output object 
 that is stored on the data servers. Default \code{c.newobj}.}

@@ -1,0 +1,78 @@
+---
+title: "Demo of dsBayesPathAnalysis's 'ds.hessSEM' with SYNTH data of Proof-of-Concept (0.3.0)"
+output:
+  pdf_document: default
+  rmarkdown::html_vignette: default
+vignette: |
+  %\VignetteIndexEntry{Demo of dsBayesPathAnalysis's 'ds.hessSEM' with SYNTH data of Proof-of-Concept (0.3.0)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+A demonstration of dsBayesPathAnalysis's 'ds.hessSEM' with SYNTH data of Proof-of-Concept (0.3.0)
+
+### Requirements
+
+##### Client-side
+- Opal 4.3.1 (service)
+- Rock 1.0.12 (service)
+- DSOpal 1.3.1 (R Package)
+- DSI 1.3.0 (R Package)
+- dsBayesPathAnalysisClient 0.3.0 (R Package)
+
+##### Server-side
+- dsBayesPathAnalysis 0.3.0 (R Package)
+- rBSEM 0.2.2 (R Package)
+
+### Load packages
+```{r}
+library("DSOpal")
+library("DSI")
+library("dsBaseClient")
+library("dsBayesPathAnalysisClient")
+```
+### Log into Opal
+```{r}
+builder <- DSI::newDSLoginBuilder(.silent = TRUE)
+builder$append(server = "sem", url = "https://192.168.56.100:8443/", user = "administrator", password = "datashield_test&", resource = "SEM.sem_data")
+login.data <- builder$build()
+
+conns <- DSI::datashield.login(logins = login.data, assign = TRUE, symbol = "R", opts = getOption("datashield.opts", list(ssl_verifyhost=0, ssl_verifypeer=0)))
+```
+### Setup server-side variables needed
+```{r}
+# list(c(1:10), c(11:20), c(21:40), c(41:50), c(51:60), c(61)
+ds.assign(toAssign = "c(1,2,3,4,5,6,7,8,9,10)", newobj = "blockList_1")
+ds.assign(toAssign = "c(11,12,13,14,15,16,17,18,19,20)", newobj = "blockList_2")
+ds.assign(toAssign = "c(21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40)", newobj = "blockList_3")
+ds.assign(toAssign = "c(41,42,43,44,45,46,47,48,49,50)", newobj = "blockList_4")
+ds.assign(toAssign = "c(51,52,53,54,55,56,57,58,59,60)", newobj = "blockList_5")
+ds.assign(toAssign = "c(61)", newobj = "blockList_6")
+ds.list(c("blockList_1", "blockList_2", "blockList_3", "blockList_4", "blockList_5", "blockList_6"), newobj = "blockList")
+
+# NULL
+ds.assign(toAssign="NULL", newobj = "varType")
+
+# matrix(c(0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0), byrow=TRUE, ncol=6, nrow=6)
+ds.matrix(mdata = c(0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0), byrow = TRUE, nrows.scalar = 6, ncols.scalar = 6, newobj = "SEMGraph")
+```
+### Invoke 'ds.hessSEM' with sem_data.txt
+```{r}
+sem_data.results <- dsBayesPathAnalysisClient::ds.hessSEM("R", "synth_data.txt", "blockList", "varType", "SEMGraph", TRUE, "S", 10000, 1000, 1, 0, 1)
+```
+### Output and save results for sem_data.txt
+```{r}
+print(sem_data.results)
+save(sem_data.results, file="synth_data.results.Rd")
+```
+### Log out of Opal
+```{r}
+DSI::datashield.logout(conns)
+```
